@@ -25,6 +25,7 @@ This project is an automated, batch-oriented ETL pipeline that processes daily e
 │   └── docker-compose.yml                # Docker configs for Postgres (and Metabase)
 ├── requirements.txt
 └── README.md
+```
 
 ## How to Recreate This Environment
 
