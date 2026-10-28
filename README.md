@@ -45,7 +45,20 @@ Ensure the following Airflow Connections are configured in the Web UI:
 - spark_master_ssh: SSH connection to the Spark Master VM.
 - airflow_host_ssh: SSH connection to the Airflow host (for running Docker/dbt commands).
 
-### 3. Deploy Spark Jobs
+### 3. Required Airflow Connections
+Before unpausing the DAG, create the following connections in the Airflow UI (Admin -> Connections):
+
+1. **`rustfs_s3_conn`** (Type: Amazon Web Services)
+   * Extra: `{"endpoint_url": "http://10.0.2.10:9000", "aws_access_key_id": "...", "aws_secret_access_key": "..."}`
+2. **`spark_master_ssh`** (Type: SSH)
+   * Host: `10.0.2.X` (Your Spark VM IP)
+   * Username: `sparkuser`
+   * Password/Key: `[Your SSH Key]`
+3. **`airflow_host_ssh`** (Type: SSH)
+   * Host: `10.0.2.13`
+   * Username: `airflow`
+
+### 4. Deploy Spark Jobs
 Copy the contents of the spark_jobs/ directory into /home/sparkuser/ on your Spark Master VM.
 
 4. Deploy dbt
