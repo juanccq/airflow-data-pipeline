@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: spark_silver
+    schema: staging
+    tables:
+      - name: sales_by_city
+        description: "Aggregated sales data pushed by Spark from RustFS"

@@ -1,0 +1,22 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (syntax, undefined variables, unused imports)
+    "I",    # isort (import order and formatting)
+    "B",    # flake8-bugbear (common design pitfalls and bug patterns)
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade (modernize Python syntax)
+]
+ignore = []
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+check_untyped_defs = true

@@ -1,0 +1,12 @@
+gold_models:
+  outputs:
+    dev:
+      type: postgres
+      dbname: gold_zone
+      host: YOUR_POSTGRES_IP
+      user: dw_admin
+      pass: YOUR_PASSWORD
+      port: 5433
+      schema: marts
+      threads: 4
+  target: dev

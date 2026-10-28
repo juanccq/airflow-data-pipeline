@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: dim_city_performance
+    description: "Gold mart categorizing cities by total sales volume."
+    columns:
+      - name: city
+        description: "Primary key. The name of the city."
+        tests:
+          - not_null
+      - name: total_sales
+        description: "Aggregated sales amount."
+        tests:
+          - not_null

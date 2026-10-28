@@ -1,0 +1,50 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Linter and test caches (Mypy, Ruff, Pytest)
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Environment and sensitive files
+.env
+.env.*
+*.env
+*.pem
+*.key
+
+# Airflow
+logs/
+airflow.cfg
+airflow.db
+webserver_config.py
+unittests.cfg
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/profiles.yml
+
+# Spark & Database
+spark-warehouse/
+metastore_db/
+derby.log
+results/
+spark_jobs/results/
+*.parquet
+
+# Editor & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

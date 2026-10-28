@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres-dw:
+    image: postgres:15
+    container_name: gold_data_warehouse
+    environment:
+      POSTGRES_USER: dw_admin
+      POSTGRES_PASSWORD: dw_password
+      POSTGRES_DB: gold_zone
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_gold_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase_bi
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase.db
+    depends_on:
+      - postgres-dw
+    restart: always
+volumes:
+  pg_gold_data:
