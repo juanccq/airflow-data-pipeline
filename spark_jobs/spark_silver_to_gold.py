@@ -4,20 +4,20 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit
 
-access_key = os.environ.get("MINIO_ACCESS_KEY")
-secret_key = os.environ.get("MINIO_SECRET_KEY")
-minio_ip = os.environ.get("MINIO_IP")
+access_key = os.environ.get("S3_ACCESS_KEY")
+secret_key = os.environ.get("S3_SECRET_KEY")
+s3_bucket_ip = os.environ.get("S3_ENDPOINT_IP")
 postgres_ip = os.environ.get("POSTGRES_IP")
 postgres_user = os.environ.get("POSTGRES_USER")
 postgres_pass = os.environ.get("POSTGRES_PASSWORD")
-s3_bucket = os.environ.get("S3_BUCKET")
+s3_bucket = os.environ.get("S3_BUCKET_NAME")
 
 run_date = sys.argv[1]
 
 # Connect to the local MinIO endpoint
 spark = (
     SparkSession.builder.appName("Silver_to_Gold_Loader")
-    .config("spark.hadoop.fs.s3a.endpoint", f"http://{minio_ip}:9000")
+    .config("spark.hadoop.fs.s3a.endpoint", f"http://{s3_bucket_ip}")
     .config("spark.hadoop.fs.s3a.access.key", access_key)
     .config("spark.hadoop.fs.s3a.secret.key", secret_key)
     .config("spark.hadoop.fs.s3a.path.style.access", "true")
