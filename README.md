@@ -1,16 +1,9 @@
 # E-Commerce Data Pipeline: Bronze to Gold ETL
 
-## 🏗️ Project Overview
+## Project Overview
 This project is an automated, batch-oriented ETL pipeline that processes daily e-commerce transaction logs. It extracts JSON data from an S3-compatible Data Lake (MinIO), processes it using a distributed Apache Spark cluster, and loads it into a PostgreSQL Data Warehouse. Final business aggregations are handled via dbt (Data Build Tool), with the entire workflow orchestrated by Apache Airflow.
 
-## ⚙️ Architecture & Tech Stack
-* **Orchestration:** Apache Airflow (Scheduled daily batch with `reschedule` sensors for memory efficiency)
-* **Data Lake (Bronze):** MinIO (S3-compatible local storage)
-* **Data Processing (Silver):** Apache Spark (PySpark)
-* **Data Warehouse (Gold):** PostgreSQL (Hosted via Docker)
-* **Transformations (Gold):** dbt
-
-## 📂 Repository Structure
+## Repository Structure
 ```text
 ├── dags/
 │   └── bronze_to_silver_spark_etl.py     # Airflow DAG definition
@@ -38,16 +31,7 @@ docker-compose up -d
 ```
 
 ### 2. Configure Airflow
-Copy dags/bronze_to_silver_spark_etl.py to your Airflow dags/ folder.
-
-Ensure the following Airflow Connections are configured in the Web UI:
-
-- rustfs_s3_conn: AWS connection pointing to the MinIO endpoint.
-- spark_master_ssh: SSH connection to the Spark Master VM.
-- airflow_host_ssh: SSH connection to the Airflow host (for running Docker/dbt commands).
-
-### 3. Required Airflow Connections
-Before unpausing the DAG, create the following connections in the Airflow UI (Admin -> Connections):
+Copy dags/bronze_to_silver_spark_etl.py to your Airflow dags/ folder. Before unpausing the DAG, create the following connections in the Airflow UI (Admin -> Connections):
 
 1. **`rustfs_s3_conn`** (Type: Amazon Web Services)
    * Extra: `{"endpoint_url": "http://10.0.2.10:9000", "aws_access_key_id": "...", "aws_secret_access_key": "..."}`
@@ -59,7 +43,7 @@ Before unpausing the DAG, create the following connections in the Airflow UI (Ad
    * Host: `10.0.2.13`
    * Username: `airflow`
 
-### 4. Deploy Spark Jobs
+### 3. Deploy Spark Jobs
 Copy the contents of the spark_jobs/ directory into /home/sparkuser/ on your Spark Master VM.
 
 4. Deploy dbt
